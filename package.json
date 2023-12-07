@@ -1,0 +1,19 @@
+{
+  "name": "m-cli",
+  "version": "1.0.0",
+  "description": "CLI for madrox",
+  "main": "bin/index.mjs",
+  "type": "module",
+  "bin": {
+    "m": "bin/index.mjs"
+  },
+  "scripts": {
+    "m": "node ./bin/index.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^11.0.0"
+  }
+}
