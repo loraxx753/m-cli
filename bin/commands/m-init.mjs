@@ -18,7 +18,7 @@ program
 
 export default program;
 
-export function initCommand(appName) {
+export function initCommand(appName, optionss) {
 
     const projectPath = path.join(process.cwd(), appName);
     if (!fs.existsSync(projectPath)) {
@@ -31,19 +31,15 @@ export function initCommand(appName) {
     return { appName, projectPath };
 }
 
-
 program.parse();
 
-
-initCommand.docs =  `## Init command documentation
+initCommand.docs =  `# Init command documentation
 
 The init command is used to initialize a new madrox project.
 
-### Usage
+### Source Code
 
 ~~~javascript
+${initCommand.toString()}
 ~~~
-
-
-
 `;
