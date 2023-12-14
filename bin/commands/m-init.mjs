@@ -1,8 +1,10 @@
 import { Command } from 'commander';
-import fs from 'node:fs/promises'
-import {compile} from '@mdx-js/mdx'
+import fs from 'fs';
+import path from 'path';
+import { colors } from '../../lib/utils.mjs';
+import { Octokit, App } from "octokit";
 
-
+const { red } = colors;
 
 const program = new Command();
 
@@ -16,25 +18,32 @@ program
 
 export default program;
 
+export function initCommand(appName) {
 
-export async function initCommand(appName) {
+    const projectPath = path.join(process.cwd(), appName);
+    if (!fs.existsSync(projectPath)) {
+        fs.mkdirSync(projectPath);
+        console.log(`Project ${red(appName)} has been initialized.`);
+    } else {
+        console.log(`A directory with the name ${appName} already exists.`);
+    }
 
-const compiled = await compile(await fs.readFile('./docs/authentication.mdx'))
-
-console.log(String(compiled))
-
-
-    // const projectPath = path.join(process.cwd(), appName);
-    // if (!fs.existsSync(projectPath)) {
-    //     fs.mkdirSync(projectPath);
-    //     console.log(`Project ${appName} has been initialized.`);
-    // } else {
-    //     console.log(`A directory with the name ${appName} already exists.`);
-    // }
-    // return {
-    //     appName,
-    //     projectPath
-    // }
+    return { appName, projectPath };
 }
 
-program.parse()
+
+program.parse();
+
+
+initCommand.docs =  `## Init command documentation
+
+The init command is used to initialize a new madrox project.
+
+### Usage
+
+~~~javascript
+~~~
+
+
+
+`;
