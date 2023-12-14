@@ -1,16 +1,13 @@
-#!/usr/bin/env node
+#!/usr/bin/env node 
+
 import { Command } from 'commander';
 const program = new Command();
 program
     .name('m')
     .description('CLI to do stuff')
-    .version('0.8.0');
+    .version('0.8.0')
+    .executableDir('./commands')
 
-program.command('create')
-    .description('Create a new project')
-    .argument('<name>', 'Name of the project')
-    .action((name, options) => {
-        console.log(`Creating project ${name}`);
-    });
+program.command('init', 'Creates a new  madrox project.')
 
 program.parse();
